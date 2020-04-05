@@ -28,6 +28,7 @@ const appRoutes: Routes = [
         FormsModule,
         BrowserAnimationsModule,
         MaterialModule,
+        HttpClientModule,
         RouterModule.forRoot(appRoutes)
         ],
     declarations:

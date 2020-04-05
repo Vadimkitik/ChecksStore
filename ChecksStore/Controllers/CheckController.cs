@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ChecksStore.Controllers
 {
     [ApiController]
-    [Route("api/products")]
+    [Route("api/checks")]
     public class CheckController : Controller
     {
         ApplicationContext db;
