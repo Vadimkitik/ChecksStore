@@ -15,13 +15,18 @@ export class CheckListComponent implements OnInit {
     displayedColumns: string[] = ['name', 'date', 'time', 'price', 'button'];
     dataSource: MatTableDataSource<Check>;
 
+    @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-    constructor(private dataService: DataService) { }
+    constructor(private dataService: DataService) 
+    { 
+        
+    }
     
 
     ngOnInit() {
         this.load();
+        this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
     }
     load() {
@@ -33,5 +38,9 @@ export class CheckListComponent implements OnInit {
     applyFilter(event: Event) {
         const filterValue = (event.target as HTMLInputElement).value;
         this.dataSource.filter = filterValue.trim().toLowerCase();
+
+        if (this.dataSource.paginator) {
+            this.dataSource.paginator.firstPage();
+          }
       }
 }
