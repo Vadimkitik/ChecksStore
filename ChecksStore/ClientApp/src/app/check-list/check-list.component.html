@@ -1,30 +1,35 @@
-﻿<div >
-    <button routerLink="/create" mat-raised-button >Добавить</button>
-</div>
+﻿
+<button routerLink="/create" mat-raised-button >Добавить</button>
 
-<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Input info to search">
+</mat-form-field>
+
+
+<mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
         <!-- Name Column -->
         <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef> Название </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Название </mat-header-cell>
           <mat-cell *matCellDef="let check"> {{check.name}} </mat-cell>
         </ng-container>
       
         <!-- Date Column -->
         <ng-container matColumnDef="date">
-          <mat-header-cell *matHeaderCellDef> Дата </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Дата </mat-header-cell>
           <mat-cell *matCellDef="let check"> {{check.date | date:'yyyy.MM.dd'}} </mat-cell>
         </ng-container>
       
         <!-- Time Column -->
         <ng-container matColumnDef="time">
-          <mat-header-cell *matHeaderCellDef> Время </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Время </mat-header-cell>
           <mat-cell *matCellDef="let check"> {{check.date | date:'HH:MM:ss'}} </mat-cell>
         </ng-container>
       
         <!-- Price Column -->
         <ng-container matColumnDef="price">
-          <mat-header-cell *matHeaderCellDef> Цена </mat-header-cell>
-          <mat-cell *matCellDef="let check"> {{check.price}} </mat-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Цена </mat-header-cell>
+          <mat-cell *matCellDef="let check"> {{ check.price | currency:'RUB':'symbol-narrow':'0.2-2' }}</mat-cell>
         </ng-container>
 
 
