@@ -18,7 +18,7 @@ namespace ChecksStore.Controllers
             if (!db.Checks.Any())
             {
                 var rnd = new Random();
-                for (int i = 0; i < 15; i++)
+                for (int i = 1; i <= 15; i++)
                 {
                     db.Checks.Add(new Check { Name = "Check-"+i, Date = new DateTime(2020, 4, rnd.Next(1,5), rnd.Next(9, 19), rnd.Next(0, 59), rnd.Next(0, 59)), Price = rnd.Next(3, 15) }); 
                 }
