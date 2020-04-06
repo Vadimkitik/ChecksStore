@@ -2,7 +2,7 @@
 <button routerLink="/create" mat-raised-button >Добавить</button>
 
 <mat-form-field>
-    <mat-label>Filter</mat-label>
+    <mat-label>Фильтер</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Input info to search">
 </mat-form-field>
 
@@ -22,12 +22,12 @@
       
         <!-- Time Column -->
         <ng-container matColumnDef="time">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Время </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header > Время </mat-header-cell>
           <mat-cell *matCellDef="let check"> {{check.date | date:'HH:MM:ss'}} </mat-cell>
         </ng-container>
       
         <!-- Price Column -->
-        <ng-container matColumnDef="price">
+        <ng-container matColumnDef="price" >
           <mat-header-cell *matHeaderCellDef mat-sort-header> Цена </mat-header-cell>
           <mat-cell *matCellDef="let check"> {{ check.price | currency:'RUB':'symbol-narrow':'0.2-2' }}</mat-cell>
         </ng-container>
@@ -45,5 +45,5 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
-<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
