@@ -29,6 +29,7 @@ export class CheckListComponent implements OnInit {
     
     ngOnInit() {   
         this.load();
+        
         }
         
 
