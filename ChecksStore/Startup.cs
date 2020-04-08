@@ -21,6 +21,7 @@ namespace ChecksStore
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
 
             services.AddControllers();
+            services.AddCors();
 
             services.AddSpaStaticFiles(configuration =>
             {
@@ -34,13 +35,14 @@ namespace ChecksStore
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseStaticFiles();
+             app.UseSpaStaticFiles();
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();
             }
 
             app.UseRouting();
+            app.UseCors(builder => builder.AllowAnyOrigin());
 
             app.UseEndpoints(endpoints =>
             {
@@ -49,12 +51,10 @@ namespace ChecksStore
 
             app.UseSpa(spa =>
             {
-                spa.Options.SourcePath = "ClientApp";
-
                 if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer(npmScript: "start");
-                }
+                    {
+  	                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+                    }
             });
         }
     }

@@ -7,43 +7,44 @@
 </mat-form-field>
 
 <div class="mat-elevation-z8">
-<mat-table [dataSource]="dataSource" matSort >
+<table mat-table [dataSource]="dataSource" matSort >
+  
         <!-- Name Column -->
         <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Название </mat-header-cell>
-          <mat-cell *matCellDef="let check"> {{check.name}} </mat-cell>
+          <th mat-header-cell *matHeaderCellDef> Название </th>
+          <td mat-cell *matCellDef="let check"> {{check.name}} </td>
         </ng-container>
       
         <!-- Date Column -->
         <ng-container matColumnDef="date">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Дата </mat-header-cell>
-          <mat-cell *matCellDef="let check"> {{check.date | date:'yyyy.MM.dd'}} </mat-cell>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Дата </th>
+          <td mat-cell *matCellDef="let check"> {{check.date | date:'yyyy.MM.dd'}} </td>
         </ng-container>
       
         <!-- Time Column -->
         <ng-container matColumnDef="time">
-          <mat-header-cell *matHeaderCellDef mat-sort-header > Время </mat-header-cell>
-          <mat-cell *matCellDef="let check"> {{check.date | date:'HH:MM:ss'}} </mat-cell>
+          <th mat-header-cell *matHeaderCellDef> Время </th>
+          <td mat-cell *matCellDef="let check"> {{check.date | date:'HH:MM:ss'}} </td>
         </ng-container>
       
         <!-- Price Column -->
         <ng-container matColumnDef="price" >
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Цена </mat-header-cell>
-          <mat-cell *matCellDef="let check"> {{ check.price | currency:'RUB':'symbol-narrow':'0.2-2' }}</mat-cell>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Цена </th>
+          <td mat-cell *matCellDef="let check"> {{ check.price | currency:'RUB':'symbol-narrow':'0.2-2' }}</td>
         </ng-container>
 
 
         <ng-container matColumnDef="button">
-                <mat-header-cell *matHeaderCellDef></mat-header-cell>
-                <mat-cell *matCellDef="let check">                        
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let check">                        
                         <button [routerLink]="['edit', check.id]" mat-raised-button color="accent">Изменить</button>
                         <button (click)="delete(check.id)" mat-raised-button color="warn">Удалить</button>
-                </mat-cell>
+                </td>
         </ng-container>            
 
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table>
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="itemsPerPage" showFirstLastButtons></mat-paginator>
 </div>
