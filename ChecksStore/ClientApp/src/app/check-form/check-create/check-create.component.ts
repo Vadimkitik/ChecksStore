@@ -4,7 +4,8 @@ import { DataService } from 'src/app/data.service';
 import { Check } from 'src/app/models/check';
 
 @Component({
-    templateUrl: './check-create.component.html'
+    templateUrl: './check-create.component.html',
+    styleUrls: ['./check-create.component.css']
 })
 export class CheckCreateComponent {
 

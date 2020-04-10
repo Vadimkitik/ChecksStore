@@ -2,7 +2,7 @@
     <h2>Изменение данных о чеке</h2>
     <check-form [(check)]="check"></check-form>
     <div class="form-group">
-        <input type="button" value="Сохранить" (click)="save()" class="btn btn-success" />
+        <button mat-raised-button color="primary" (click)="save()">Сохранить</button>
     </div>
 </div>
-<a routerLink="/" class="nav-link">Назад к списку</a>
+<button routerLink="/" mat-raised-button color="warn">Назад</button>

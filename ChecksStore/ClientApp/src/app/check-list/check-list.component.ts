@@ -12,6 +12,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class CheckListComponent implements OnInit {
     
+    checkDate;
     displayedColumns: string[] = ['name', 'date', 'time', 'price', 'button'];
     dataSource: MatTableDataSource<Check>;
     itemsPerPage: number[];
@@ -29,7 +30,6 @@ export class CheckListComponent implements OnInit {
     
     ngOnInit() {   
         this.load();
-        
         }
         
 

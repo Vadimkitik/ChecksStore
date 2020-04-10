@@ -4,7 +4,8 @@ import { DataService } from 'src/app/data.service';
 import { Check } from 'src/app/models/check';
 
 @Component({
-    templateUrl: './check-edit.component.html'
+    templateUrl: './check-edit.component.html',
+    styleUrls: ['./check-edit.component.css']
 })
 export class CheckEditComponent implements OnInit {
 

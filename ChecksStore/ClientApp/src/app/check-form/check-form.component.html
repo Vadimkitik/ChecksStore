@@ -1,12 +1,17 @@
-﻿<div class="form-group">
-    <label>Название</label>
-    <input type="text" [(ngModel)]="check.name" class="form-control" />
+﻿<div class="check-form">
+    <mat-form-field class="check-full-width">
+      <mat-label>Название</mat-label>
+      <input matInput placeholder="Check-№" type="text" [(ngModel)]="check.name" />
+    </mat-form-field>
+  
+    <mat-form-field class="check-full-width">
+      <mat-label>Дата и время</mat-label>
+      <input matInput placeholder="2020-01-01 09-00" type="datetime-local" [(ngModel)]="check.date" />
+    </mat-form-field>
+
+    <mat-form-field class="check-full-width">
+        <mat-label>Цена</mat-label>
+        <input matInput placeholder="5$" type="number" [(ngModel)]="check.price" />
+      </mat-form-field>
 </div>
-<div class="form-group">
-    <label>Дата и время</label>
-    <input type="datetime-local" [(ngModel)]="check.date" class="form-control" />
-</div>
-<div class="form-group">
-    <label>Цена</label>
-    <input type="number" [(ngModel)]="check.price" class="form-control" />
-</div>
+  
