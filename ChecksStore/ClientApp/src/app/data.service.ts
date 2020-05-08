@@ -5,7 +5,7 @@ import { Check } from './models/check';
 @Injectable()
 export class DataService {
 
-    private url = "http://localhost:5000/api/checks";
+    private url = "/api/checks";
 
     constructor(private http: HttpClient) {
     }

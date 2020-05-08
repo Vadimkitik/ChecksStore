@@ -1,6 +1,7 @@
 using ChecksStore.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -40,7 +41,7 @@ namespace ChecksStore
             {
                 app.UseDeveloperExceptionPage();
             }
-             app.UseSpaStaticFiles();
+             app.UseStaticFiles();
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();
@@ -56,11 +57,20 @@ namespace ChecksStore
 
             app.UseSpa(spa =>
             {
+                spa.Options.SourcePath = "ClientApp";
+
                 if (env.IsDevelopment())
-                    {
-  	                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
-                    }
+                {
+                    spa.UseAngularCliServer(npmScript: "start");
+                }
             });
+            //app.UseSpa(spa =>
+            //{
+            //    if (env.IsDevelopment())
+            //        {
+            //           spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+            //        }
+            //});
         }
     }
 }
