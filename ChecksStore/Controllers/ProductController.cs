@@ -8,56 +8,56 @@ using System.Threading.Tasks;
 namespace ChecksStore.Controllers
 {
     [ApiController]
-    [Route("api/checks")]
-    public class CheckController : Controller
+    [Route("api/products")]
+    public class ProductController : Controller
     {
         ApplicationContext db;
-        public CheckController(ApplicationContext context)
+        public ProductController(ApplicationContext context)
         {
             db = context;
-            if (!db.Checks.Any())
+            if (!db.Products.Any())
             {
                 var rnd = new Random();
                 for (int i = 1; i <= 15; i++)
                 {
-                    db.Checks.Add(new Check { Name = "Check-"+i, Date = new DateTime(2020, 4, rnd.Next(1,5), rnd.Next(9, 19), rnd.Next(0, 59), rnd.Next(0, 59)), Price = rnd.Next(3, 15) }); 
+                    db.Products.Add(new Product { Name = "Check-"+i, Type = "Цветы", Price = rnd.Next(3, 15), Count = rnd.Next(10,50) }); 
                 }
                 db.SaveChanges();
             }
         }
         [HttpGet]
-        public IEnumerable<Check> Get()
+        public IEnumerable<Product> Get()
         {
-            return db.Checks.ToList();
+            return db.Products.ToList();
         }
 
         [HttpGet("{id}")]
-        public Check Get(int id)
+        public Product Get(int id)
         {
-            Check check = db.Checks.FirstOrDefault(x => x.Id == id);
-            return check;
+            Product product = db.Products.FirstOrDefault(x => x.Id == id);
+            return product;
         }
 
         [HttpPost]
-        public IActionResult Post(Check check)
+        public IActionResult Post(Product product)
         {
             if (ModelState.IsValid)
             {
-                db.Checks.Add(check);
+                db.Products.Add(product);
                 db.SaveChanges();
-                return Ok(check);
+                return Ok(product);
             }
             return BadRequest(ModelState);
         }
 
         [HttpPut]
-        public IActionResult Put(Check check)
+        public IActionResult Put(Product product)
         {
             if (ModelState.IsValid)
             {
-                db.Update(check);
+                db.Update(product);
                 db.SaveChanges();
-                return Ok(check);
+                return Ok(product);
             }
             return BadRequest(ModelState);
         }
@@ -65,13 +65,13 @@ namespace ChecksStore.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            Check check = db.Checks.FirstOrDefault(x => x.Id == id);
-            if (check != null)
+            Product product = db.Products.FirstOrDefault(x => x.Id == id);
+            if (product != null)
             {
-                db.Checks.Remove(check);
+                db.Products.Remove(product);
                 db.SaveChanges();
             }
-            return Ok(check);
+            return Ok(product);
         }
     }
 }

@@ -1,0 +1,22 @@
+﻿<div class="product-form">
+    <mat-form-field class="product-full-width">
+        <mat-label>Название</mat-label>
+        <input matInput placeholder="Розы, тюльпаны, божий одуванчик..." type="text" [(ngModel)]="product.name" />
+    </mat-form-field>
+
+    <mat-form-field class="product-full-width">
+        <mat-label>Модель</mat-label>
+        <input matInput placeholder="Тип товара" type="text" [(ngModel)]="product.type" />
+    </mat-form-field>
+
+    <mat-form-field class="product-full-width">
+        <mat-label>Цена</mat-label>
+        <input matInput placeholder="5$" type="number" [(ngModel)]="product.price" />
+    </mat-form-field>
+
+    <mat-form-field class="product-full-width">
+        <mat-label>Количество</mat-label>
+        <input matInput placeholder="4" type="number" [(ngModel)]="product.count" />
+    </mat-form-field>
+</div>
+  

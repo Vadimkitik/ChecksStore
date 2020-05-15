@@ -13,6 +13,6 @@ namespace ChecksStore.Models
         {
             Database.EnsureCreated();
         }
-        public DbSet<Check> Checks { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }

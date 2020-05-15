@@ -1,20 +1,20 @@
 ﻿import { Component, OnInit, ContentChild, ViewChild } from '@angular/core';
-import { DataService } from '../data.service';
-import { Check } from '../models/check';
+import { ProductDataService } from '../productData.service';
+import { Product } from '../models/product';
 
 import { MatTableDataSource} from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
-    templateUrl: './check-list.component.html',
-    styleUrls: ['check-list.component.css']
+    templateUrl: './product-list.component.html',
+    styleUrls: ['product-list.component.css']
 })
-export class CheckListComponent implements OnInit {
+export class ProductListComponent implements OnInit {
     
-    checkDate;
-    displayedColumns: string[] = ['name', 'date', 'time', 'price', 'button'];
-    dataSource: MatTableDataSource<Check>;
+    productDate;
+    displayedColumns: string[] = ['name', 'type', 'price', 'count', 'button'];
+    dataSource: MatTableDataSource<Product>;
     itemsPerPage: number[];
    
 
@@ -22,7 +22,7 @@ export class CheckListComponent implements OnInit {
     @ViewChild(MatSort) sort: MatSort;
   
 
-    constructor(private dataService: DataService) 
+    constructor(private dataService: ProductDataService) 
     {
         this.itemsPerPage = [10, 25, 50, 100];
     }
@@ -34,14 +34,14 @@ export class CheckListComponent implements OnInit {
         
 
     load() {
-        this.dataService.getChecks().subscribe((checks: Check[]) => {
-             this.dataSource = new MatTableDataSource(checks);
+        this.dataService.getProducts().subscribe((products: Product[]) => {
+            this.dataSource = new MatTableDataSource(products);
              this.dataSource.paginator = this.paginator;
              this.dataSource.sort = this.sort;
             });
     }
     delete(id: number) {
-        this.dataService.deleteCheck(id).subscribe(data => this.load());
+        this.dataService.deleteProduct(id).subscribe(data => this.load());
     }
     applyFilter(event: Event) {
         const filterValue = (event.target as HTMLInputElement).value;

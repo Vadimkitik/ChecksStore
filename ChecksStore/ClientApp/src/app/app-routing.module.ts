@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { CheckListComponent } from './check-list/check-list.component';
+import { ProductListComponent } from './product-list/product-list.component';
 import { NotFoundComponent } from './not-found.component';
-import { CheckCreateComponent } from './check-form/check-create/check-create.component';
-import { CheckEditComponent } from './check-form/check-edit/check-edit.component';
+import { ProductCreateComponent } from './product-form/product-create/product-create.component';
+import { ProductEditComponent } from './product-form/product-edit/product-edit.component';
 
 const appRoutes: Routes = [
-    { path: '', component: CheckListComponent },
-    { path: 'create', component: CheckCreateComponent },
-    { path: 'edit/:id', component: CheckEditComponent },
+    { path: '', component:  ProductListComponent },
+    { path: 'create', component:  ProductCreateComponent },
+    { path: 'edit/:id', component:  ProductEditComponent },
     { path: '**', component: NotFoundComponent }
 ];
 

@@ -8,12 +8,12 @@ import { MaterialModule } from './material/material.module';
 
 
 import { AppComponent } from './app.component';
-import { CheckFormComponent } from './check-form/check-form.component';
-import { CheckCreateComponent } from './check-form/check-create/check-create.component';
-import { CheckEditComponent } from './check-form/check-edit/check-edit.component';
-import { CheckListComponent } from './check-list/check-list.component';
+import { ProductFormComponent } from './product-form/product-form.component';
+import { ProductCreateComponent } from './product-form/product-create/product-create.component';
+import { ProductEditComponent } from './product-form/product-edit/product-edit.component';
+import { ProductListComponent } from './product-list/product-list.component';
 import { NotFoundComponent } from './not-found.component';
-import { DataService } from './data.service';
+import { ProductDataService } from './productData.service';
 import  {AppRoutingModule} from './app-routing.module';
 
 
@@ -30,13 +30,13 @@ import  {AppRoutingModule} from './app-routing.module';
     declarations:
         [
             AppComponent,
-            CheckFormComponent,
-            CheckCreateComponent,
-            CheckListComponent,
-            CheckEditComponent,
+            ProductFormComponent,
+            ProductCreateComponent,
+            ProductListComponent,
+            ProductEditComponent,
             NotFoundComponent
         ],
-    providers: [DataService],
+    providers: [ProductDataService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
