@@ -5,7 +5,7 @@ import { Product } from './models/product';
 @Injectable()
 export class ProductDataService {
 
-    private url = "/api/products";
+    private url = "http://localhost:5000/api/products";
 
     constructor(private http: HttpClient) {
     }

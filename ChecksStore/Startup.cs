@@ -55,22 +55,22 @@ namespace ChecksStore
                 endpoints.MapControllers();
             });
 
-            app.UseSpa(spa =>
-            {
-                spa.Options.SourcePath = "ClientApp";
-
-                if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer(npmScript: "start");
-                }
-            });
             //app.UseSpa(spa =>
             //{
+            //    spa.Options.SourcePath = "ClientApp";
+
             //    if (env.IsDevelopment())
-            //        {
-            //           spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
-            //        }
+            //    {
+            //        spa.UseAngularCliServer(npmScript: "start");
+            //    }
             //});
+            app.UseSpa(spa =>
+            {
+                if (env.IsDevelopment())
+                {
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+                }
+            });
         }
     }
 }
