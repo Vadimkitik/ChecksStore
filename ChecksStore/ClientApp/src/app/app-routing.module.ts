@@ -7,10 +7,10 @@ import { ProductCreateComponent } from './product-form/product-create/product-cr
 import { ProductEditComponent } from './product-form/product-edit/product-edit.component';
 
 const appRoutes: Routes = [
-    { path: '', component:  ProductListComponent },
+    { path: '', component:   ProductListComponent },
     { path: 'create', component:  ProductCreateComponent },
-    { path: 'edit/:id', component:  ProductEditComponent },
-    { path: '**', component: NotFoundComponent }
+    { path: 'edit/:id', component:  ProductEditComponent }
+   // { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

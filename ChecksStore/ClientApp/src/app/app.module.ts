@@ -15,17 +15,18 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { NotFoundComponent } from './not-found.component';
 import { ProductDataService } from './productData.service';
 import  {AppRoutingModule} from './app-routing.module';
-
-
+import { AuthModule } from './auth/auth.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
     imports: [
         BrowserModule,
-        FormsModule,
         BrowserAnimationsModule,
         MaterialModule,
+        SharedModule,
         HttpClientModule,
-        AppRoutingModule
+        AppRoutingModule,
+        AuthModule
         ],
     declarations:
         [

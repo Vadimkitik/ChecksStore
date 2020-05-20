@@ -5,7 +5,7 @@ import { Product } from 'src/app/models/product';
 
 @Component({
     templateUrl: './product-create.component.html',
-    styleUrls: ['./product-create.component.css']
+    styleUrls: ['./product-create.component.scss']
 })
 export class ProductCreateComponent {
 

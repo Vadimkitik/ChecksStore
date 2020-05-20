@@ -16,7 +16,9 @@
             "tsConfig": "tsconfig.json",
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
+              "src/styles.scss",
+              "src/assets/vendor.css",
+              "src/assets/theme.css"
             ],
             "aot": true
           },
@@ -41,7 +43,8 @@
     }
   },
   "defaultProject": "helloangularapp",
+
   "cli": {
-    "analytics": "210e6b4c-9fd2-4241-9eb7-9a60ed64acb8"
+    "analytics": "13e15490-a6e8-49c2-9d99-3aeceb254b8a"
   }
 }
