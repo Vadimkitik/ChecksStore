@@ -1,27 +1,148 @@
-<p class="text-xs-center">Регистрация для получения доступа</p><form>
-  <div class="form-group">
+<p class="text-xs-center">Регистрация для получения доступа</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div 
+   class="form-group"
+   [ngClass]="{'has-error': form.get('email').invalid && form.get('email').touched}"
+   >
     <label for="email">Email</label>
-    <input type="text" class="form-control underlined" id="email" placeholder="Введите email">
+    <input 
+      type="text" 
+      class="form-control underlined" 
+      id="email" 
+      formControlName='email'
+      placeholder="Введите email"
+    >
+    <span 
+      class="form-help-text"
+      *ngIf="form.get('email').invalid && form.get('email').touched"
+      >
+      <span *ngIf="form.get('email')['errors']['required']">Email не должен быть пустым.</span>
+      <span *ngIf="form.get('email')['errors']['email']">Введите корректный email.</span>
+    </span>
   </div>
-  <div class="form-group has-error">
+ 
+  <div formGroupName="passwords">
+  <div 
+   class="form-group"
+   [ngClass]="{'has-error': form.get('passwords').get('password').invalid && form.get('passwords').get('password').touched }"
+   >
     <label for="password">Пароль</label>
-    <input type="password" class="form-control underlined" id="password" placeholder="Введите пароль">
-    <span class="form-help-text">Error message.</span>
+    <input 
+      type="password" 
+      class="form-control underlined" 
+      id="password"
+      formControlName="password" 
+      placeholder="Введите пароль"
+      >
+      <span 
+      class="form-help-text"
+      *ngIf="form.get('passwords').get('password').invalid && form.get('passwords').get('password').touched"
+      >
+      <span *ngIf="form.get('passwords').get('password')['errors']['required']">Пароль не должен быть пустым.</span>
+      <span 
+        *ngIf="form.get('passwords').get('password')['errors']['minlength']"
+      >Пароль должен быть не меньше {{ form.get('passwords').get('password')['errors']['minlength']['requiredLength'] }} символов.
+    </span>
+    </span>
   </div>
-  <div class="form-group has-success">
+  <div 
+   class="form-group"
+   [ngClass]="{'has-error': form.get('passwords').invalid && form.get('passwords').get('confpassword').touched }"
+   >
+    <label for="confpassword">Повторите пароль</label>
+    <input 
+      type="password" 
+      class="form-control underlined" 
+      id="confpassword"
+      formControlName="confpassword" 
+      placeholder="Повторите пароль"
+      >
+      <span 
+      class="form-help-text"
+      *ngIf="form.get('passwords').invalid && form.get('passwords').get('confpassword').touched"
+      >Пароли должны совпадать.
+    </span>
+  </div>
+</div>
+
+  <div 
+    class="form-group"
+    [ngClass]="{'has-error': form.get('name').invalid && form.get('name').touched}"
+    >
     <label for="name">Имя</label>
-    <input type="text" class="form-control underlined" id="name" placeholder="Введите имя">
-    <span class="form-help-text">Success message.</span>
+    <input 
+      type="text" 
+      class="form-control underlined" 
+      id="name"
+      formControlName="name" 
+      placeholder="Введите имя"
+      >
+    <span
+      class="form-help-text"
+      *ngIf="form.get('name').invalid && form.get('name').touched"
+      >
+      Введите имя.
+    </span>
   </div>
+  <div
+   class="form-group"
+   [ngClass]="{'has-error': form.get('telephone').invalid && form.get('telephone').touched}"
+   >
+    <label for="telephone">Телефон</label>
+    <input 
+      type="tel"
+      pattern="375[0-9]{9}"
+      class="form-control underlined" 
+      id="telephone"
+      formControlName="telephone"
+      placeholder="375..."
+      maxlength="12"
+      >
+      <span
+       class="form-help-text"
+       *ngIf="form.get('telephone').invalid && form.get('telephone').touched"
+       >
+        <span        
+          *ngIf="(form.get('telephone')['errors']['minlength'] || form.get('telephone')['errors']['pattern'] || form.get('telephone').invalid)  && form.get('telephone').touched "
+          >Введите номер телефона в формате 375ххххххххх.
+        </span>
+      </span>
+  </div>
+  <div
+   class="form-group"
+   [ngClass]="{'has-error': form.get('address').invalid && form.get('address').touched}"
+   >
+    <label for="address">Адрес</label>
+    <input
+      type="text" 
+      class="form-control underlined" 
+      id="address"
+      formControlName="address"
+      placeholder="г.Гродно, ул. Совецкая 15а, кв. 5"
+      >
+      <span
+      class="form-help-text"
+      *ngIf="form.get('address').invalid && form.get('address').touched"
+      >
+      Введите адрес.
+    </span>
+  </div>
+
   <div class="form-group">
     <label for="agree">
       <input class="checkbox" id="agree" type="checkbox">
       <span>Согласен с правилами</span>
     </label>
   </div>
+
   <div class="form-group">
-    <button type="submit" class="btn btn-block btn-primary">Зарегистрироваться</button>
+    <button
+     type="submit" 
+     class="btn btn-block btn-primary"
+     [disabled]="form.invalid"
+     >Зарегистрироваться</button>
   </div>
+
   <div class="form-group">
     <p class="text-muted text-xs-center">
       Уже есть аккаунт?
