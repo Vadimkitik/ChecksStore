@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit, ContentChild, ViewChild } from '@angular/core';
-import { ProductDataService } from '../productData.service';
-import { Product } from '../models/product';
+import { ProductDataService } from '../shared/services/productData.service';
+import { Product } from '../shared/models/product.model';
 
 import { MatTableDataSource} from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';

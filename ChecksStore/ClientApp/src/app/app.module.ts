@@ -13,7 +13,7 @@ import { ProductCreateComponent } from './product-form/product-create/product-cr
 import { ProductEditComponent } from './product-form/product-edit/product-edit.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { NotFoundComponent } from './not-found.component';
-import { ProductDataService } from './productData.service';
+import { ProductDataService } from './shared/services/productData.service';
 import  {AppRoutingModule} from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';

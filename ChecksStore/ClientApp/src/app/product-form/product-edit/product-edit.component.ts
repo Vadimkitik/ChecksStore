@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ProductDataService } from 'src/app/productData.service';
-import { Product } from 'src/app/models/product';
+import { ProductDataService } from 'src/app/shared/services/productData.service';
+import { Product } from 'src/app/shared/models/product.model';
 
 @Component({
     templateUrl: './product-edit.component.html',

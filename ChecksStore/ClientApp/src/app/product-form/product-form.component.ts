@@ -1,5 +1,5 @@
 ﻿import { Component, Input } from '@angular/core';
-import { Product } from '../models/product';
+import { Product } from '../shared/models/product.model';
 @Component({
     selector: "product-form",
     templateUrl: './product-form.component.html',
