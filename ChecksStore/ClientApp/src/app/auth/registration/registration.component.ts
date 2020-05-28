@@ -25,6 +25,7 @@ export class RegistrationComponent implements OnInit {
       'name': new FormControl(null, Validators.required),
       'telephone': new FormControl(null, [Validators.required, Validators.minLength(9), this.phoneValidator]),
       'address': new FormControl(null, Validators.required),
+      'agree': new FormControl(null, Validators.required)
     });
   }
   onSubmit(){
