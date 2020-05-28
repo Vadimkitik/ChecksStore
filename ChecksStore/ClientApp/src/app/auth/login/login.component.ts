@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { UsersService } from 'src/app/shared/services/users.service';
 import { User } from 'src/app/shared/models/user.model';
 import { Message } from 'src/app/shared/models/message.model';
+import { AuthService } from 'src/app/shared/services/auth.service';
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
@@ -13,7 +15,10 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   message: Message;
 
-  constructor(private usersService: UsersService) { }
+  constructor(
+    private usersService: UsersService,
+    private authService: AuthService
+    ) { }
 
   ngOnInit() {
     this.message = new Message('','');
@@ -36,6 +41,9 @@ export class LoginComponent implements OnInit {
       .subscribe((user: User) => {
       
         if(user.password === formData.password && user.email === formData.email) {
+          this.message.text = '';
+          window.localStorage.setItem('user', JSON.stringify(user));
+          this.authService.login()
           console.log(user);
         } else {
           this.showMessage('Введен не правильный логин или пароль');

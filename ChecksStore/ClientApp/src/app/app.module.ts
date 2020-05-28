@@ -17,6 +17,7 @@ import  {AppRoutingModule} from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { UsersService } from './shared/services/users.service';
+import { AuthService } from './shared/services/auth.service';
 
 @NgModule({
     imports: [
@@ -37,7 +38,11 @@ import { UsersService } from './shared/services/users.service';
             ProductEditComponent,
             NotFoundComponent
         ],
-    providers: [ProductService, UsersService],
+    providers: [
+        ProductService, 
+        UsersService,
+        AuthService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
