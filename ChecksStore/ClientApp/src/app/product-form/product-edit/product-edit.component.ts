@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ProductDataService } from 'src/app/shared/services/productData.service';
+import { ProductService } from 'src/app/shared/services/product.service';
 import { Product } from 'src/app/shared/models/product.model';
 
 @Component({
@@ -13,7 +13,7 @@ export class ProductEditComponent implements OnInit {
     product: Product;    // изменяемый объект
     loaded: boolean = false;
 
-    constructor(private dataService: ProductDataService, private router: Router, activeRoute: ActivatedRoute) {
+    constructor(private dataService: ProductService, private router: Router, activeRoute: ActivatedRoute) {
         this.id = Number.parseInt(activeRoute.snapshot.params["id"]);
     }
 

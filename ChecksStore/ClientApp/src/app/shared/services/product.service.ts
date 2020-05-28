@@ -3,9 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Product } from '../models/product.model';
 
 @Injectable()
-export class ProductDataService {
+export class ProductService {
 
     private url = "http://localhost:5000/api/products";
+    //private url = "api/products";
 
     constructor(private http: HttpClient) {
     }

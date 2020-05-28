@@ -14,5 +14,6 @@ namespace ChecksStore.Models
             Database.EnsureCreated();
         }
         public DbSet<Product> Products { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

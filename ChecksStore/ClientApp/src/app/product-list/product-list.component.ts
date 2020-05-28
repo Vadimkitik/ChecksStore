@@ -1,5 +1,5 @@
 ﻿import { Component, OnInit, ContentChild, ViewChild } from '@angular/core';
-import { ProductDataService } from '../shared/services/productData.service';
+import { ProductService } from '../shared/services/product.service';
 import { Product } from '../shared/models/product.model';
 
 import { MatTableDataSource} from '@angular/material/table';
@@ -22,7 +22,7 @@ export class ProductListComponent implements OnInit {
     @ViewChild(MatSort) sort: MatSort;
   
 
-    constructor(private dataService: ProductDataService) 
+    constructor(private dataService: ProductService) 
     {
         this.itemsPerPage = [10, 25, 50, 100];
     }

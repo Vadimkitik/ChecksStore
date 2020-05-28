@@ -1,6 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProductDataService } from 'src/app/shared/services/productData.service';
+import { ProductService } from 'src/app/shared/services/product.service';
 import { Product } from 'src/app/shared/models/product.model';
 
 @Component({
@@ -10,7 +10,7 @@ import { Product } from 'src/app/shared/models/product.model';
 export class ProductCreateComponent {
 
     product: Product = new Product();    // добавляемый объект
-    constructor(private dataService: ProductDataService, private router: Router) { }
+    constructor(private dataService: ProductService, private router: Router) { }
     save() {
         this.dataService.createProduct(this.product).subscribe(data => this.router.navigateByUrl("/"));
     }

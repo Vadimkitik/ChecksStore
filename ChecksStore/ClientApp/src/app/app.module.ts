@@ -2,7 +2,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
 
 
@@ -13,10 +12,11 @@ import { ProductCreateComponent } from './product-form/product-create/product-cr
 import { ProductEditComponent } from './product-form/product-edit/product-edit.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { NotFoundComponent } from './not-found.component';
-import { ProductDataService } from './shared/services/productData.service';
+import { ProductService } from './shared/services/product.service';
 import  {AppRoutingModule} from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
+import { UsersService } from './shared/services/users.service';
 
 @NgModule({
     imports: [
@@ -37,7 +37,7 @@ import { SharedModule } from './shared/shared.module';
             ProductEditComponent,
             NotFoundComponent
         ],
-    providers: [ProductDataService],
+    providers: [ProductService, UsersService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
