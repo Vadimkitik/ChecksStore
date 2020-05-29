@@ -9,9 +9,9 @@ using ChecksStore.Models;
 
 namespace ChecksStore.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/users")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UsersController : Controller
     {
         private readonly ApplicationContext _context;
 
@@ -40,12 +40,11 @@ namespace ChecksStore.Controllers
         {
             var user = await _context.Users.FindAsync(email);
 
-            if (user == null)
+            if (user != null)
             {
-                return NotFound();
+                return user;
             }
-
-            return user;
+            return NotFound();
         }
 
         // PUT: api/Users/5
@@ -86,10 +85,13 @@ namespace ChecksStore.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+             if (ModelState.IsValid)
+            {
+                _context.Users.Add(user);
+                await _context.SaveChangesAsync();
+                return Ok(user);
+            }
+            return BadRequest(ModelState);
         }
 
         // DELETE: api/Users/5

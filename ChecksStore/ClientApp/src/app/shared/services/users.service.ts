@@ -8,7 +8,7 @@ import { User } from '../models/user.model';
 @Injectable()
 export class UsersService {
 
-   private url = "http://localhost:5000/api/users";
+   private url = 'http://localhost:5000/api/users';
    //private url = "api/users";
     
     constructor(private http: HttpClient) {}
@@ -26,7 +26,7 @@ export class UsersService {
     getUser(id: number) {
         return this.http.get(this.url + '/' + id);
     }
-
+    
     createUser(user: User) {
         return this.http.post(this.url, user);
     }

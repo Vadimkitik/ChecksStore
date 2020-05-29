@@ -11,13 +11,14 @@ namespace ChecksStore.Controllers
 {
     [ApiController]
     [Route("api/products")]
-    public class ProductController : ControllerBase
+    public class ProductController : Controller
     {
         private readonly ApplicationContext db;
 
         public ProductController(ApplicationContext context)
         {
             db = context;
+
             if (!db.Products.Any())
             {
                 var rnd = new Random();
@@ -37,14 +38,13 @@ namespace ChecksStore.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> Get(int id)
         {
-            Product product = await db.Products.FindAsync(id);
+            Product product = await db.Products.FirstOrDefaultAsync(p => p.Id == id);
 
-            if (product == null)
+            if (product != null)
             {
-                return NotFound();
+                return product;                
             }
-
-            return product;
+            return NotFound();            
         }
 
         [HttpPost]
@@ -74,7 +74,7 @@ namespace ChecksStore.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            Product product = await db.Products.FindAsync(id);
+            Product product = await db.Products.FirstOrDefaultAsync(p => p.Id == id);
             if (product != null)
             {
                 db.Products.Remove(product);

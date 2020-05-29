@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, FormBuilder, AbstractControl } from '@angular/forms';
-import { group } from '@angular/animations';
+
+import { User } from 'src/app/shared/models/user.model';
+import { UsersService } from 'src/app/shared/services/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'registration',
@@ -10,7 +13,10 @@ import { group } from '@angular/animations';
 export class RegistrationComponent implements OnInit {
 
   form: FormGroup;
-  constructor() {}
+  constructor(
+    private usersService: UsersService,
+    private router: Router
+  ) {}
   
 
   ngOnInit() {
@@ -29,8 +35,17 @@ export class RegistrationComponent implements OnInit {
     });
   }
   onSubmit(){
-    console.log(this.form);
+    console.log();
+    const { email, password, name, telephone, address} = this.form.value;
+    const user = new User(email, this.form.value['passwords']['password'], name, telephone, address);
+    console.log(user);
+    this.usersService.createUser(user)
+    .subscribe((user: User) => {
+     console.log(user);
+   })
   }
+
+
 
   private passwordsAreEqual(): ValidatorFn {
     return (group: FormGroup): { [key: string]: any } => {
