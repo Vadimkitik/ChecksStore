@@ -1,17 +1,20 @@
-﻿using ChecksStore.Models;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ChecksStore.Models;
 
 namespace ChecksStore.Controllers
 {
     [ApiController]
     [Route("api/products")]
-    public class ProductController : Controller
+    public class ProductController : ControllerBase
     {
-        ApplicationContext db;
+        private readonly ApplicationContext db;
+
         public ProductController(ApplicationContext context)
         {
             db = context;
@@ -26,52 +29,59 @@ namespace ChecksStore.Controllers
             }
         }
         [HttpGet]
-        public IEnumerable<Product> Get()
+        public async Task<ActionResult<IEnumerable<Product>>> Get()
         {
-            return db.Products.ToList();
+            return await db.Products.ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public Product Get(int id)
+        public async Task<ActionResult<Product>> Get(int id)
         {
-            Product product = db.Products.FirstOrDefault(x => x.Id == id);
+            Product product = await db.Products.FindAsync(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
             return product;
         }
 
         [HttpPost]
-        public IActionResult Post(Product product)
+        public async Task<IActionResult> Post(Product product)
         {
             if (ModelState.IsValid)
             {
                 db.Products.Add(product);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return Ok(product);
             }
             return BadRequest(ModelState);
         }
 
         [HttpPut]
-        public IActionResult Put(Product product)
+        public async Task<IActionResult> Put(Product product)
         {
             if (ModelState.IsValid)
             {
                 db.Update(product);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return Ok(product);
             }
             return BadRequest(ModelState);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            Product product = db.Products.FirstOrDefault(x => x.Id == id);
+            Product product = await db.Products.FindAsync(id);
             if (product != null)
             {
                 db.Products.Remove(product);
-                db.SaveChanges();
-            }
-            return Ok(product);
+                await db.SaveChangesAsync();
+                return Ok(product);
+            }            
+            return NotFound();
         }
     }
 }
