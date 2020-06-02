@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.message = new Message('','');
-    
+
     this.route.queryParams
       .subscribe((params: Params) => {
         if(params['nowCanLoggin']) {
@@ -54,21 +54,23 @@ export class LoginComponent implements OnInit {
     const formData = this.form.value;
 
     this.usersService.getUserByEmail(formData.email)
-      .subscribe((user: User) => {
-      
+      .subscribe((user: User) => {   
+         
+         
         if(user.password === formData.password && user.email === formData.email) {
           this.message.text = '';
           window.localStorage.setItem('user', JSON.stringify(user));
           this.authService.login()
-          console.log(user);
         } else {
           this.showMessage({
-            text:'Введен не правильный логин или пароль',
+            text:'Введен не правильный пароль',
             type:'danger'
           });
           }
+          
         
-      });
+      } , error => {this.showMessage({ text: error.throw, type: 'danger'}); }
+      );
   }
 
 }

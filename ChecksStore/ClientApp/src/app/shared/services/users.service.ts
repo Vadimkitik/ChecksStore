@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 import { User } from '../models/user.model';
 
@@ -14,10 +14,11 @@ export class UsersService {
     constructor(private http: HttpClient) {}
 
     getUserByEmail(email: string) : Observable<User> {
-        return this.http.get(this.url + `?email=${email}`)
-                        .pipe(map((users: User[]) => users[0] ? users[0] : undefined));
-        
+        return this.http.get(this.url + `/${email}`)
+                      .pipe(catchError(() => throwError('Пользователя с таким email не существует.')));        
     }
+
+    
 
     getUsers() {
         return this.http.get(this.url);

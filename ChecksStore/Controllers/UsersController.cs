@@ -38,7 +38,7 @@ namespace ChecksStore.Controllers
         [HttpGet("{email}")]
         public async Task<ActionResult<User>> GetUser(string email)
         {
-            var user = await _context.Users.FindAsync(email);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
 
             if (user != null)
             {
