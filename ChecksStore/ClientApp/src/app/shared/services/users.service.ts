@@ -13,9 +13,8 @@ export class UsersService {
     
     constructor(private http: HttpClient) {}
 
-    getUserByEmail(email: string) : Observable<User> {
-        return this.http.get(this.url + `/${email}`)
-                      .pipe(catchError(() => throwError('Пользователя с таким email не существует.')));        
+    getUser(user: User) : Observable<User> {
+        return this.http.get(this.url + '/' + user);        
     }
 
     
@@ -24,7 +23,7 @@ export class UsersService {
         return this.http.get(this.url);
     }
 
-    getUser(id: number) {
+    getUserById(id: number) {
         return this.http.get(this.url + '/' + id);
     }
     
