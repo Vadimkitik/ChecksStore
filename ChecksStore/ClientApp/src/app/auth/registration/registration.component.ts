@@ -35,12 +35,18 @@ export class RegistrationComponent implements OnInit {
     });
   }
   onSubmit(){
+    
     const { email, password, name, telephone, address} = this.form.value;
     const user = new User(email, this.form.value['passwords']['password'], name, telephone, address);
+
     this.usersService.createUser(user)
       .subscribe((user: User) => {
-         console.log(user);
-   })
+        this.router.navigate(['/login'], {
+          queryParams: {
+            nowCanLoggin: true
+          }
+        });
+   });
   }
 
 
