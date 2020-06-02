@@ -58,8 +58,8 @@ namespace ChecksStore
             //app.UseSpa(spa =>
             //{
             //    spa.Options.SourcePath = "ClientApp";
-
-            //    if (env.IsDevelopment())
+            //
+            //   if (env.IsDevelopment())
             //    {
             //        spa.UseAngularCliServer(npmScript: "start");
             //    }
@@ -68,7 +68,7 @@ namespace ChecksStore
             {
                 if (env.IsDevelopment())
                 {
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+                   spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }
             });
         }
