@@ -13,7 +13,7 @@ export class UsersService {
     
     constructor(private http: HttpClient) {}
 
-    getUser(email: string) : Observable<User> {
+    getUserByEmail(email: string) : Observable<User> {
         return this.http.get(this.url + `/${email}`);        
     }
 
