@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from
 import { User } from 'src/app/shared/models/user.model';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../shared/services/auth.service';
 
 
 @Component({
@@ -14,9 +15,10 @@ import { Router } from '@angular/router';
 export class RegistrationComponent implements OnInit {
 
   form: FormGroup;
-  constructor(
-    private usersService: UsersService,
-    private router: Router
+    constructor(
+        private authService: AuthService,
+        private router: Router,
+        private usersService: UsersService
   ) {}
   
 
@@ -38,7 +40,7 @@ export class RegistrationComponent implements OnInit {
     const { email, password, name, telephone, address} = this.form.value;
     const user = new User(email, this.form.value['passwords']['password'], name, telephone, address);
 
-    this.usersService.createUser(user)
+      this.authService.checkLogin(user)
       .subscribe((user: User) => {
         this.router.navigate(['/login'], {
           queryParams: {

@@ -1,4 +1,5 @@
 using ChecksStore.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -17,6 +18,8 @@ namespace ChecksStore
             string connectionString = "Server=(localdb)\\mssqllocaldb;Database=ChecksStore;Trusted_Connection=True;";
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme);
+               
             services.AddControllers();
             services.AddCors(options =>
             {
@@ -46,7 +49,8 @@ namespace ChecksStore
             {
                 app.UseSpaStaticFiles();
             }
-
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseRouting();
             app.UseCors(MyAllowSpecificOrigins);
 
@@ -55,22 +59,23 @@ namespace ChecksStore
                 endpoints.MapControllers();
             });
 
-            //app.UseSpa(spa =>
-            //{
-            //    spa.Options.SourcePath = "ClientApp";
-            //
-            //   if (env.IsDevelopment())
-            //    {
-            //        spa.UseAngularCliServer(npmScript: "start");
-            //    }
-            //});
             app.UseSpa(spa =>
             {
+                spa.Options.SourcePath = "ClientApp";
+
                 if (env.IsDevelopment())
                 {
-                   spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+                    spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
+            //app.UseSpa(spa =>
+            //{
+            //    if (env.IsDevelopment())
+            //    {
+            //       spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+            //    }
+            //});
         }
     }
 }

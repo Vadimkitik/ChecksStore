@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 import { User } from '../models/user.model';
 
 @Injectable()
 export class UsersService {
 
-   private url = 'http://localhost:5000/api/users';
-   //private url = "api/users";
+   //private url = 'http://localhost:5000/api/users';
+   private url = "api/users";
     
     constructor(private http: HttpClient) {}
 
