@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material/material.module';
+import { JwtModule } from '@auth0/angular-jwt';
 
 
 
@@ -19,6 +20,10 @@ import { SharedModule } from './shared/shared.module';
 import { UsersService } from './shared/services/users.service';
 import { AuthService } from './shared/services/auth.service';
 
+export function tokenGetter(){
+    return localStorage.getItem("jwt");
+}
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -27,7 +32,14 @@ import { AuthService } from './shared/services/auth.service';
         SharedModule,
         HttpClientModule,
         AppRoutingModule,
-        AuthModule
+        AuthModule,
+        JwtModule.forRoot({
+           config: {
+               tokenGetter: tokenGetter,
+               whitelistedDomains: ["localhost:5000"],
+               blacklistedRoutes: []
+           } 
+        })
         ],
     declarations:
         [

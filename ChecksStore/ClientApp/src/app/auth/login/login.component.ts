@@ -54,19 +54,14 @@ export class LoginComponent implements OnInit {
     const formData = this.form.value;
 
     this.usersService.getUserByEmail(formData.email)
-      .subscribe((user: User) => {         
-        if(user.password === formData.password && user.email === formData.email) {
-          this.message.text = '';
-          console.log('Loggin successful');
-          window.localStorage.setItem('user', JSON.stringify(user));
-          this.authService.login()
-          this.router.navigate(['/']);
-        } else {
-          this.showMessage({
-            text:'Введен не правильный логин или пароль',
-            type:'danger'
-          });
-          }        
+      .subscribe(response => { 
+        const token = (<any>response).token;
+        localStorage.setItem("jwt", token);
+        this.authService.login()
+        this.router.navigate(["/"]);        
+        this.message.text = '';
+        console.log('Loggin successful');        
+        this.router.navigate(['/']);                
       }, error => {
         this.showMessage({
           text:'Введен не правильный логин или пароль',
