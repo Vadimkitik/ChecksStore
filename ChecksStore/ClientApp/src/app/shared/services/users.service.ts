@@ -7,8 +7,8 @@ import { User } from '../models/user.model';
 @Injectable()
 export class UsersService {
 
-   //private url = 'http://localhost:5000/api/users';
-   private url = "api/users";
+   private url = 'http://localhost:5000/api/users';
+   //private url = "api/users";
     
     constructor(private http: HttpClient) {}
 

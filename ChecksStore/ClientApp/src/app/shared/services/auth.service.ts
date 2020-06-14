@@ -9,7 +9,8 @@ export class AuthService {
 
     constructor(private http: HttpClient) { }
 
-    private url = "api/authentification";
+    private url = "http://localhost:5000/api/authentification";
+   // private url = "api/authentification";
     private isAuthenticated = false;
 
     checkLogin(user: User): Observable<User> {
