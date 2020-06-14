@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ChecksStore.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ChecksStore.Controllers
 {
@@ -28,14 +29,14 @@ namespace ChecksStore.Controllers
         }
 
         // GET: api/Users
-        [HttpGet]
+        [HttpGet,Authorize]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             return await _context.Users.ToListAsync();
         }
 
         // GET: api/Users/5
-        [HttpGet("{email}")]
+        [HttpGet("{email}"),Authorize]
         public async Task<ActionResult<User>> GetUserByEmail(string email)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);

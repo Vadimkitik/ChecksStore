@@ -47,8 +47,8 @@ namespace ChecksStore
                 builder =>
                 {
                     builder.WithOrigins("http://localhost:4200")
-                                        .AllowAnyHeader()
-                                        .AllowAnyMethod();
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
                 });
             });
 
@@ -64,14 +64,18 @@ namespace ChecksStore
             {
                 app.UseDeveloperExceptionPage();
             }
-             app.UseStaticFiles();
+            app.UseStaticFiles();
+            
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();
             }
+
             app.UseAuthentication();
             app.UseAuthorization();
+
             app.UseRouting();
+
             app.UseCors(MyAllowSpecificOrigins);
 
             app.UseEndpoints(endpoints =>
