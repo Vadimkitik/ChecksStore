@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     const formData = this.form.value;
 
-    this.usersService.getUserByEmail(formData.email)
+    this.authService.login1(formData)
       .subscribe(response => { 
         const token = (<any>response).token;
         localStorage.setItem("jwt", token);

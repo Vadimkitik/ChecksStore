@@ -19,7 +19,7 @@ export class AuthService {
     }
 
     login1(form: NgForm) {
-        const credentials = JSON.stringify(form.value);
+        const credentials = JSON.stringify(form);
         return this.http.post(this.url, credentials, {
            headers: new HttpHeaders({
           "Content-Type": "application/json"

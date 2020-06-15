@@ -27,7 +27,7 @@ namespace ChecksStore.Controllers
                 return BadRequest("Invalid client request");
             }
  
-            if (user.Email == "johndoe" && user.Password == "def@123")
+            if (user.Email == "john@doe" && user.Password == "def@123")
             {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
