@@ -19,6 +19,7 @@ import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { UsersService } from './shared/services/users.service';
 import { AuthService } from './shared/services/auth.service';
+import { AuthGuard } from './shared/services/auth-guard.service';
 
 export function tokenGetter(){
     return localStorage.getItem("jwt");
@@ -53,7 +54,8 @@ export function tokenGetter(){
     providers: [
         ProductService, 
         UsersService,
-        AuthService
+        AuthService,
+        AuthGuard
     ],
     bootstrap: [AppComponent]
 })
