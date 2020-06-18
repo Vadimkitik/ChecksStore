@@ -91,13 +91,13 @@
    >
     <label for="telephone">Телефон</label>
     <input 
-      type="tel"
-      pattern="375[0-9]{9}"
+      type="text"
+      pattern="[0-9]{9}"
       class="form-control underlined" 
       id="telephone"
       formControlName="telephone"
-      placeholder="375..."
-      maxlength="12"
+      placeholder="Код и номер 33/25/29"
+      maxlength="9"
       >
       <span
        class="form-help-text"
@@ -105,7 +105,7 @@
        >
         <span        
           *ngIf="(form.get('telephone')['errors']['minlength'] || form.get('telephone')['errors']['pattern'] || form.get('telephone').invalid)  && form.get('telephone').touched "
-          >Введите номер телефона в формате 375ххххххххх.
+          >Введите номер телефона.
         </span>
       </span>
   </div>

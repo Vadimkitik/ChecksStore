@@ -6,27 +6,6 @@ using System.Threading.Tasks;
 
 namespace ChecksStore.Models
 {
-    public class RegisterModel
-    {
-        [Required(ErrorMessage = "Не указан Email")]
-        public string Email { get; set; }
-
-        [Required(ErrorMessage = "Не указан пароль")]
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
-
-        [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Пароль введен неверно")]
-        public string ConfirmPassword { get; set; }
-
-        [Required(ErrorMessage = "Не указано Имя")]
-        public string Name { get; set; }
-        [Required(ErrorMessage = "Не указан номер телефона")]
-        public string Telephone { get; set; }
-        [Required(ErrorMessage = "Не указан адрес")]
-        public string Address { get; set; }
-    }
-
     public class LoginModel
     {
         [Required(ErrorMessage = "Не указан Email")]
