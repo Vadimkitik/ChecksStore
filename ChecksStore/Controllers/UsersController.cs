@@ -22,7 +22,7 @@ namespace ChecksStore.Controllers
 
             if (!_context.Users.Any())
             {
-                User user = new User { Email = "dwa@mail.ru", Password = "123321123", Name = "Axi", Telephone = "375331232456", Address = "г. Гродно, ул. Советская 4, кв 3" };
+                User user = new User { Email = "dwa@mail.ru", Password = "123321123", Name = "Axi", Telephone = "375331232456", Address = "г. Гродно, ул. Советская 4, кв 3", Role = "Admin" };
                 _context.Users.Add(user);
                 _context.SaveChanges();
             }

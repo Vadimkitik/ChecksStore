@@ -27,10 +27,10 @@ namespace ChecksStore.Controllers
         }
 
         [HttpPost, Route("login")]
-        public IActionResult Login([FromBody]LoginModel user)
+        public IActionResult Login([FromBody]LoginModel checkUser)
         {
-            User checkUser = db.Users.FirstOrDefault(u => u.Email == user.Email && u.Password == user.Password);
-            if (checkUser == null)
+            User user = db.Users.FirstOrDefault(u => u.Email == checkUser.Email && u.Password == checkUser.Password);
+            if (user == null)
             {
                 return BadRequest("Invalid client request");
             }
@@ -41,7 +41,7 @@ namespace ChecksStore.Controllers
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.Email),
-                    new Claim(ClaimTypes.Role, "Manager")
+                    new Claim(ClaimTypes.Role, user.Role)
                 };
  
                 var tokeOptions = new JwtSecurityToken(

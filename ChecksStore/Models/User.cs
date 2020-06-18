@@ -19,5 +19,6 @@ namespace ChecksStore.Models
         public string Telephone { get; set; }
         [Required] 
         public string Address { get; set; }
+        public string Role { get; set; }
     }
 }
