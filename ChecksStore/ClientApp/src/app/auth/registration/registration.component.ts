@@ -4,7 +4,6 @@ import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from
 import { User } from 'src/app/shared/models/user.model';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { Router } from '@angular/router';
-import { AuthService } from '../../shared/services/auth.service';
 
 
 @Component({
@@ -16,7 +15,6 @@ export class RegistrationComponent implements OnInit {
 
   form: FormGroup;
     constructor(
-        private authService: AuthService,
         private router: Router,
         private usersService: UsersService
   ) {}
@@ -39,9 +37,11 @@ export class RegistrationComponent implements OnInit {
   onSubmit(){    
     const { email, password, name, telephone, address} = this.form.value;
     const user = new User(email, this.form.value['passwords']['password'], name, telephone, address);
-
-      this.authService.checkLogin(user)
+    console.log(user);
+    
+      this.usersService.createUser(user)
       .subscribe((user: User) => {
+        console.log(user);
         this.router.navigate(['/login'], {
           queryParams: {
             nowCanLoggin: true

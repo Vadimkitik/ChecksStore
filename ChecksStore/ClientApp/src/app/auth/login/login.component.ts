@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 
-import { UsersService } from 'src/app/shared/services/users.service';
-import { User } from 'src/app/shared/models/user.model';
 import { Message } from 'src/app/shared/models/message.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
@@ -18,7 +16,6 @@ export class LoginComponent implements OnInit {
   message: Message;
 
   constructor(
-    private usersService: UsersService,
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute
@@ -50,6 +47,7 @@ export class LoginComponent implements OnInit {
       this.message.text = '';
     }, 4000);
   }
+  
   onSubmit(){
     const formData = this.form.value;
 

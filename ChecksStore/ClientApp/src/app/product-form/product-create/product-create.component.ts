@@ -11,8 +11,8 @@ import { Product } from 'src/app/shared/models/product.model';
 export class ProductCreateComponent {
 
     product: Product = new Product();    // добавляемый объект
-    constructor(private dataService: ProductService, private router: Router) { }
+    constructor(private productService: ProductService, private router: Router) { }
     save() {
-        this.dataService.createProduct(this.product).subscribe(data => this.router.navigateByUrl("/"));
+        this.productService.createProduct(this.product).subscribe(data => this.router.navigateByUrl("/"));
     }
 }

@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
 
-import { User } from '../models/user.model';
 
 @Injectable()
 export class AuthService {
@@ -14,9 +13,7 @@ export class AuthService {
    // private url = "api/auth/login";
     private isAuthenticated = false;
 
-    checkLogin(user: User): Observable<User> {
-        return this.http.post(this.url, user);        
-    }
+ 
 
     login1(form: NgForm) {
         const credentials = JSON.stringify(form);

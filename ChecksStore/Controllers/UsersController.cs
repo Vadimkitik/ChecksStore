@@ -29,14 +29,14 @@ namespace ChecksStore.Controllers
         }
 
         // GET: api/Users
-        [HttpGet,Authorize]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             return await _context.Users.ToListAsync();
         }
 
         // GET: api/Users/5
-        [HttpGet("{email}"),Authorize]
+        [HttpGet("{email}")]
         public async Task<ActionResult<User>> GetUserByEmail(string email)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);

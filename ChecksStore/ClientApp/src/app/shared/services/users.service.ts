@@ -15,7 +15,10 @@ export class UsersService {
     getUserByEmail(email: string) : Observable<User> {
         return this.http.get(this.url + `/${email}`);        
     }
-
+    
+    createUser(user: User) : Observable<User> {
+        return this.http.post(this.url, user);
+    }
     
 
     getUsers() {
@@ -26,9 +29,7 @@ export class UsersService {
         return this.http.get(this.url + '/' + id);
     }
     
-    createUser(user: User) {
-        return this.http.post(this.url, user);
-    }
+   
 
     updateUser(user: User) {
         return this.http.put(this.url, user);

@@ -12,6 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System;
 using System.Text;
+using System.Linq;
 
 namespace ChecksStore.Controllers
 {
@@ -19,22 +20,28 @@ namespace ChecksStore.Controllers
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
+        private ApplicationContext db;
+        public AuthController(ApplicationContext context)
+        {
+            db = context;
+        }
+
         [HttpPost, Route("login")]
         public IActionResult Login([FromBody]LoginModel user)
         {
-            if (user == null)
+            User checkUser = db.Users.FirstOrDefault(u => u.Email == user.Email && u.Password == user.Password);
+            if (checkUser == null)
             {
                 return BadRequest("Invalid client request");
             }
  
-            if (user.Email == "john@doe" && user.Password == "def123")
-            {
+            
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.Email),
-                    new Claim(ClaimTypes.Role, "Operator")
+                    new Claim(ClaimTypes.Role, "Manager")
                 };
  
                 var tokeOptions = new JwtSecurityToken(
@@ -47,54 +54,6 @@ namespace ChecksStore.Controllers
  
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
                 return Ok(new { Token = tokenString });
-            }
-            else
-            {
-            return Unauthorized();
-            }
         }
-        // private ApplicationContext db;
-        // public AuthController(ApplicationContext context)
-        // {
-        //     db = context;
-        // }
-
-        // [HttpPost]
-        // [ValidateAntiForgeryToken]
-        // public async Task<ActionResult<LoginModel>> Login(LoginModel model)
-        // {
-        //     if (ModelState.IsValid)
-        //     {
-        //         User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
-        //         if (user != null)
-        //         {
-        //             return Ok(model);
-        //         }
-        //         ModelState.AddModelError("", "Некорректные логин и(или) пароль");
-        //     }
-        //     return model;
-        // }
-
-
-        // [HttpPost]
-        // [ValidateAntiForgeryToken]
-        // public async Task<ActionResult<RegisterModel>> Register(RegisterModel model)
-        // {
-        //     if (ModelState.IsValid)
-        //     {
-        //         User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
-        //         if (user == null)
-        //         {
-        //             // добавляем пользователя в бд
-        //             db.Users.Add(new User { Email = model.Email, Password = model.Password });
-        //             await db.SaveChangesAsync();
-
-        //             return Ok(model);
-        //         }
-        //         else
-        //             ModelState.AddModelError("", "Некорректные логин и(или) пароль");
-        //     }
-        //     return model;
-        // }
     }
 }
