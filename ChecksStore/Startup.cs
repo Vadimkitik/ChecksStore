@@ -70,10 +70,12 @@ namespace ChecksStore
                 app.UseSpaStaticFiles();
             }
 
+            app.UseRouting();
+            
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseRouting();
+            
 
             app.UseCors(MyAllowSpecificOrigins);
 

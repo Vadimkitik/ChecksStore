@@ -27,15 +27,20 @@ namespace ChecksStore.Controllers
                 return BadRequest("Invalid client request");
             }
  
-            if (user.Email == "john@doe" && user.Password == "def@123")
+            if (user.Email == "john@doe" && user.Password == "def123")
             {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, user.Email),
+                    new Claim(ClaimTypes.Role, "Operator")
+                };
  
                 var tokeOptions = new JwtSecurityToken(
                 issuer: "http://localhost:5000",
                 audience: "http://localhost:5000",
-                claims: new List<Claim>(),
+                claims: claims,
                 expires: DateTime.Now.AddMinutes(5),
                 signingCredentials: signinCredentials
             );
