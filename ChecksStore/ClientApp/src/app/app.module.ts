@@ -20,6 +20,7 @@ import { SharedModule } from './shared/shared.module';
 import { UsersService } from './shared/services/users.service';
 import { AuthService } from './shared/services/auth.service';
 import { AuthGuard } from './shared/services/auth-guard.service';
+import { SystemModule } from './system/system.module';
 
 export function tokenGetter(){
     return localStorage.getItem("jwt");
@@ -34,6 +35,7 @@ export function tokenGetter(){
         HttpClientModule,
         AppRoutingModule,
         AuthModule,
+        SystemModule,
         JwtModule.forRoot({
            config: {
                tokenGetter: tokenGetter,

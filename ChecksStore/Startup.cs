@@ -17,8 +17,10 @@ namespace ChecksStore
 
         public void ConfigureServices(IServiceCollection services)
         {
-            string connectionString = "Server=(localdb)\\mssqllocaldb;Database=ChecksStore;Trusted_Connection=True;";
-            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
+            string connectionString = "server=localhost;UserId=root;Password=1z2x3cQQ;database=alleutina_shop;CharSet=utf8;Persist Security Info=True";
+            //string connectionString = "Server=(localdb)\\mssqllocaldb;Database=ChecksStore;Trusted_Connection=True;";
+            services.AddDbContext<ApplicationContext>(options => 
+               options.UseMySql(connectionString));
 
             //
             services.AddAuthentication(opt => {
