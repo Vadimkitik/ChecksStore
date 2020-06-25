@@ -7,7 +7,7 @@ const routes: Routes = [
     {path: 'system', component: SystemComponent, children: [
         
     ]}
-]
+];
 
 @NgModule({
     declarations: [],

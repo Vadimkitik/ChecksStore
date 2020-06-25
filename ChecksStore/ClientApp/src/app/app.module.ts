@@ -13,13 +13,9 @@ import { ProductCreateComponent } from './product-form/product-create/product-cr
 import { ProductEditComponent } from './product-form/product-edit/product-edit.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { NotFoundComponent } from './not-found.component';
-import { ProductService } from './shared/services/product.service';
 import  {AppRoutingModule} from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
-import { UsersService } from './shared/services/users.service';
-import { AuthService } from './shared/services/auth.service';
-import { AuthGuard } from './shared/services/auth-guard.service';
 import { SystemModule } from './system/system.module';
 
 export function tokenGetter(){
@@ -53,12 +49,7 @@ export function tokenGetter(){
             ProductEditComponent,
             NotFoundComponent
         ],
-    providers: [
-        ProductService, 
-        UsersService,
-        AuthService,
-        AuthGuard
-    ],
+    
     bootstrap: [AppComponent]
 })
 export class AppModule { }
