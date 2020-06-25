@@ -43,6 +43,7 @@
     }
   },
   "defaultProject": "helloangularapp",
+   
 
   "cli": {
     "analytics": "13e15490-a6e8-49c2-9d99-3aeceb254b8a"
