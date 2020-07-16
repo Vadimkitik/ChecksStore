@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, Params} from '@angular/router';
 
 import { Message } from 'src/app/shared/models/message.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
 
 @Component({
   selector: 'login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private tokenStorage: TokenStorageService
     ) { }
 
   ngOnInit() {
@@ -34,7 +36,6 @@ export class LoginComponent implements OnInit {
         }
       });
 
-    
     this.form = new FormGroup({
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'password': new FormControl(null, [Validators.required, Validators.minLength(6)])
@@ -49,14 +50,14 @@ export class LoginComponent implements OnInit {
   }
   
   onSubmit(){
-    const formData = this.form.value;
-
-    this.authService.login1(formData)
+    this.authService.login1(this.form.value)
       .subscribe(response => { 
         const token = (<any>response).token;
-        localStorage.setItem("jwt", token);
-        this.authService.login()
-        this.router.navigate(["/"]);        
+
+        this.tokenStorage.saveToken(token);
+        this.tokenStorage.saveUser(response);
+
+        this.authService.login()      
         this.message.text = '';
         console.log('Loggin successful');        
         this.router.navigate(['/']);                

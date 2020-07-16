@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { User } from 'src/app/shared/models/user.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -12,19 +12,23 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 export class HeaderComponent implements OnInit {
 
   date: Date = new Date();
-  user: User;
+  user: Object = {};
 
   constructor(
-    private authServise: AuthService,
-    private router: Router
-    ) { }
+    private authService: AuthService,
+    private router: Router,
+    private actRoute: ActivatedRoute
+    ) { 
+      let id = this.actRoute.snapshot.paramMap.get('id');
+      console.log(id);      
+    }
 
   ngOnInit() {
-   // this.user = JSON.parse(window.localStorage.getItem('jwt'));
+    console.log(this.user);
   }
 
   logOut(){
-    this.authServise.logout();
+    this.authService.logout();
     this.router.navigate(['/login']);
 
   }

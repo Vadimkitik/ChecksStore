@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse  } from '@angular/common/http';
+import { Observable, throwError  } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { NgForm } from '@angular/forms';
 
 
@@ -12,17 +13,16 @@ export class AuthService {
     private url = "http://localhost:5000/api/auth/login";
    // private url = "api/auth/login";
     private isAuthenticated = false;
+    headers = new HttpHeaders().set('Content-Type', 'application/json');
 
  
 
     login1(form: NgForm) {
         const credentials = JSON.stringify(form);
         return this.http.post(this.url, credentials, {
-           headers: new HttpHeaders({
-          "Content-Type": "application/json"
-        })
+           headers: this.headers
       })
-    }
+    }  
 
     login(){
         this.isAuthenticated = true;           
@@ -36,4 +36,5 @@ export class AuthService {
     isLoggedIn(){
         return this.isAuthenticated;
     }
+    
 }
