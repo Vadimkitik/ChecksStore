@@ -12,6 +12,11 @@ import { PlanningPageComponent } from './planning-page/planning-page.component';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { DropdownDirectice } from './shared/directives/dropdown.directive';
+import { ProductFormComponent } from './product-page/product-form/product-form.component';
+import { ProductCreateComponent } from './product-page/product-form/product-create/product-create.component';
+import { ProductEditComponent } from './product-page/product-form/product-edit/product-edit.component';
+import { ProductListComponent } from './product-page/product-list/product-list.component';
+import { MaterialModule } from '../material/material.module';
 
 @NgModule({
     declarations: [
@@ -23,12 +28,17 @@ import { DropdownDirectice } from './shared/directives/dropdown.directive';
         PlanningPageComponent,
         SidebarComponent,
         HeaderComponent,
-        DropdownDirectice
+        DropdownDirectice,
+        ProductFormComponent,
+        ProductCreateComponent,
+        ProductListComponent,
+        ProductEditComponent,
     ],
     imports: [ 
         CommonModule, 
         SharedModule,
-        SystemRoutingModule        
+        SystemRoutingModule,
+        MaterialModule       
      ],
     exports: [],
     providers: [],

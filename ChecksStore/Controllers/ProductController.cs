@@ -35,7 +35,7 @@ namespace ChecksStore.Controllers
             return await db.Products.ToListAsync();
         }
 
-        [HttpGet("{id}"),Authorize(Roles = "Admin")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<Product>> Get(int id)
         {
             Product product = await db.Products.FirstOrDefaultAsync(p => p.Id == id);
@@ -47,7 +47,7 @@ namespace ChecksStore.Controllers
             return NotFound();            
         }
 
-        [HttpPost,Authorize(Roles = "Admin")]
+        [HttpPost]
         public async Task<IActionResult> Post(Product product)
         {
             if (ModelState.IsValid)
@@ -59,7 +59,7 @@ namespace ChecksStore.Controllers
             return BadRequest(ModelState);
         }
 
-        [HttpPut,Authorize(Roles = "Admin")]
+        [HttpPut]
         public async Task<IActionResult> Put(Product product)
         {
             if (ModelState.IsValid)
@@ -71,7 +71,7 @@ namespace ChecksStore.Controllers
             return BadRequest(ModelState);
         }
 
-        [HttpDelete("{id}"),Authorize(Roles = "Admin")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             Product product = await db.Products.FirstOrDefaultAsync(p => p.Id == id);

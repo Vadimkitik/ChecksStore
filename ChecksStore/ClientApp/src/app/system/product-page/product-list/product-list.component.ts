@@ -1,38 +1,39 @@
 ﻿import { Component, OnInit, ContentChild, ViewChild } from '@angular/core';
-import { ProductService } from '../shared/services/product.service';
-import { Product } from '../shared/models/product.model';
-
-import { MatTableDataSource} from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource} from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { User } from '../shared/models/user.model';
+
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
+import { ProductService } from 'src/app/shared/services/product.service';
+import { Product } from 'src/app/shared/models/product.model';
 
 @Component({
     templateUrl: './product-list.component.html',
     styleUrls: ['product-list.component.scss']
 })
-export class ProductListComponent implements OnInit {
-    
+export class ProductListComponent implements OnInit {    
     productDate;
     displayedColumns: string[] = ['name', 'type', 'price', 'count', 'button'];
     dataSource: MatTableDataSource<Product>;
     itemsPerPage: number[];
-   
+    userRoleAdmin = false;   
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
-    @ViewChild(MatSort) sort: MatSort;
-  
+    @ViewChild(MatSort) sort: MatSort;  
 
-    constructor(private dataService: ProductService) 
-    {
+    constructor(
+        private dataService: ProductService, 
+        private token: TokenStorageService,
+        private authService: AuthService
+        ) 
+    {        
         this.itemsPerPage = [10, 25, 50, 100];
-    }
-    
+    }    
     
     ngOnInit() {   
         this.load();
-    }
-        
+    }        
 
     load() {
         this.dataService.getProducts().subscribe((products: Product[]) => {

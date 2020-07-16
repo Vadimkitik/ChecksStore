@@ -3,11 +3,16 @@
             {{ date | date:'dd.MM.yyyy'}}
         </div>
         <div class="header-block header-block-nav">
-            <ul class="nav-profile">
+            <a class="nav-profile profile nav-link" role="button" *ngIf="!isLoginned" [routerLink]="['/login']">
+                <span class="name">
+                    Вы зашли как {{ user.name }}, можете Войти.
+                </span>
+            </a>
+            <ul class="nav-profile" *ngIf="isLoginned">
                 <li class="profile dropdown" appDropown>
                     <a class="nav-link dropdown-toggle" role="button">
                         <span class="name">
-                            Здравствуйте, {{ user.name }} ваша роль на этом сайте : {{ user.role }}
+                            Здравствуйте, {{ user.name }}, ваша роль: {{ user.role }}
                         </span>
                     </a>
                     <div class="dropdown-menu profile-dropdown-menu">

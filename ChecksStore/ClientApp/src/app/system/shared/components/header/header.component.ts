@@ -11,17 +11,20 @@ import { TokenStorageService } from 'src/app/shared/services/token-storage.servi
 export class HeaderComponent implements OnInit {
 
   date: Date = new Date();
-  user;
+  user = { name: "Guest", role: "noname"};
+  isLoginned = false;
 
   constructor(
     private router: Router,
     private token: TokenStorageService
-    ) { 
-       if(token.getUser() != null)
-       {
+    ){
+      if(token.getUser() != null) 
+      {
         this.user = token.getUser();
-       }
-        console.log(this.user);
+        this.isLoginned = true; 
+      }
+           
+      console.log(this.user);
     }
 
   ngOnInit() {

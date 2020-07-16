@@ -1,5 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+
 import { ProductService } from 'src/app/shared/services/product.service';
 import { Product } from 'src/app/shared/models/product.model';
 
@@ -27,6 +28,6 @@ export class ProductEditComponent implements OnInit {
     }
 
     save() {
-        this.dataService.updateProduct(this.product).subscribe(data => this.router.navigateByUrl("/"));
+        this.dataService.updateProduct(this.product).subscribe(data => this.router.navigateByUrl("/system/products"));
     }
 }

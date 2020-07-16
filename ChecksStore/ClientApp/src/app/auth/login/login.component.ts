@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup;
   message: Message;
+  name: string;
+  isLoggedIn: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -51,16 +53,18 @@ export class LoginComponent implements OnInit {
   
   onSubmit(){
     this.authService.login1(this.form.value)
-      .subscribe(response => { 
+      .subscribe(response => {         
         const token = (<any>response).token;
 
         this.tokenStorage.saveToken(token);
         this.tokenStorage.saveUser(response);
-
-        this.authService.login()      
+        
+        this.authService.login()
+        this.name=this.tokenStorage.getUser().name;      
         this.message.text = '';
-        console.log('Loggin successful');        
-        this.router.navigate(['/system/bill']);                
+        console.log('Loggin successful');  
+
+       this.router.navigate(['/system/bill']);                
       }, error => {
         this.showMessage({
           text:'Введен не правильный логин или пароль',

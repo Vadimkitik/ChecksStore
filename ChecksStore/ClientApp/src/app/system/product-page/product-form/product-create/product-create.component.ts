@@ -12,7 +12,9 @@ export class ProductCreateComponent {
 
     product: Product = new Product();    // добавляемый объект
     constructor(private productService: ProductService, private router: Router) { }
+
     save() {
-        this.productService.createProduct(this.product).subscribe(data => this.router.navigateByUrl("/"));
-    }
+        this.productService.createProduct(this.product).subscribe(data =>
+             this.router.navigateByUrl("/system/products"));
+     }
 }
