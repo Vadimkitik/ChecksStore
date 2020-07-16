@@ -47,7 +47,7 @@ namespace ChecksStore.Controllers
             );
  
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-                return Ok(new { Token = tokenString, user.Name, user.Email, user.Telephone, user.Address });
+                return Ok(new { Token = tokenString, user.Name, user.Role, user.Email, user.Telephone, user.Address });
         }
     }
 }

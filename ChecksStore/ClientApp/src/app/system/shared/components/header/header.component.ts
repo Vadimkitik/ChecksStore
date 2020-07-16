@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
-import { User } from 'src/app/shared/models/user.model';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -12,23 +11,24 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 export class HeaderComponent implements OnInit {
 
   date: Date = new Date();
-  user: Object = {};
+  user;
 
   constructor(
-    private authService: AuthService,
     private router: Router,
-    private actRoute: ActivatedRoute
+    private token: TokenStorageService
     ) { 
-      let id = this.actRoute.snapshot.paramMap.get('id');
-      console.log(id);      
+       if(token.getUser() != null)
+       {
+        this.user = token.getUser();
+       }
+        console.log(this.user);
     }
 
   ngOnInit() {
-    console.log(this.user);
   }
 
   logOut(){
-    this.authService.logout();
+    this.token.signOut();
     this.router.navigate(['/login']);
 
   }
