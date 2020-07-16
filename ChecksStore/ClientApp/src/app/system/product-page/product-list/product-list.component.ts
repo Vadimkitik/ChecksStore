@@ -12,12 +12,16 @@ import { Product } from 'src/app/shared/models/product.model';
     templateUrl: './product-list.component.html',
     styleUrls: ['product-list.component.scss']
 })
-export class ProductListComponent implements OnInit {    
+export class ProductListComponent implements OnInit { 
+    private role: string;   
     productDate;
     displayedColumns: string[] = ['name', 'type', 'price', 'count', 'button'];
     dataSource: MatTableDataSource<Product>;
     itemsPerPage: number[];
     userRoleAdmin = false;   
+    isLoggedIn = false;
+    showAdminButton = false;
+    
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;  
@@ -31,8 +35,14 @@ export class ProductListComponent implements OnInit {
         this.itemsPerPage = [10, 25, 50, 100];
     }    
     
-    ngOnInit() {   
+    ngOnInit() { 
+        this.isLoggedIn = !!this.token.getToken();  
         this.load();
+
+        if(this.isLoggedIn){
+            this.role = this.token.getUser().role;
+            this.showAdminButton = this.role.includes('Admin');
+        }
     }        
 
     load() {

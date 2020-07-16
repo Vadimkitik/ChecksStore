@@ -12,22 +12,20 @@ export class HeaderComponent implements OnInit {
 
   date: Date = new Date();
   user = { name: "Guest", role: "noname"};
-  isLoginned = false;
+  isLoggedIn = false;
 
   constructor(
     private router: Router,
     private token: TokenStorageService
-    ){
-      if(token.getUser() != null) 
-      {
-        this.user = token.getUser();
-        this.isLoginned = true; 
-      }
-           
-      console.log(this.user);
-    }
+    ){}
 
-  ngOnInit() {
+  ngOnInit() {    
+    this.isLoggedIn = !!this.token.getToken();
+
+    if (this.isLoggedIn) {
+      this.user = this.token.getUser();
+    }     
+    console.log(this.user);    
   }
 
   logOut(){
