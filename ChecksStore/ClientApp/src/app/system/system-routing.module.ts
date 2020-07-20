@@ -10,6 +10,7 @@ import { ProductCreateComponent } from './product-page/product-form/product-crea
 import { AuthGuard } from '../shared/services/auth-guard.service';
 import { ProductListComponent } from './product-page/product-list/product-list.component';
 import { ProductEditComponent } from './product-page/product-form/product-edit/product-edit.component';
+import { UsersListComponent } from './users-page/users-list/users-list.component';
 
 const routes: Routes = [
     { path: 'system', component: SystemComponent, children: [
@@ -18,7 +19,7 @@ const routes: Routes = [
         { path: 'planning', component: PlanningPageComponent},
         { path: 'products', component: ProductListComponent },
         { path: 'records', component: RecordsPageComponent},
-    //  { path: 'users', component: BillPageComponent},
+        { path: 'users', component: UsersListComponent},
         { path: 'products/create', component:  ProductCreateComponent },
         { path: 'products/edit/:id', component:  ProductEditComponent }
     ]}
