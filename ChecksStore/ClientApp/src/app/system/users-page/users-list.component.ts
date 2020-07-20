@@ -16,7 +16,7 @@ export class UsersListComponent implements OnInit {
 
   private role: string;   
     usersDate;
-    displayedColumns: string[] = ['email', 'name', 'address', 'telephone', 'role', 'button'];
+    displayedColumns: string[] = ['email', 'name', 'address', 'telephone', 'role'];
     dataSource: MatTableDataSource<User>;
     itemsPerPage: number[];
     userRoleAdmin = false;   

@@ -10,7 +10,7 @@ import { ProductCreateComponent } from './product-page/product-form/product-crea
 import { AuthGuard } from '../shared/services/auth-guard.service';
 import { ProductListComponent } from './product-page/product-list/product-list.component';
 import { ProductEditComponent } from './product-page/product-form/product-edit/product-edit.component';
-import { UsersListComponent } from './users-page/users-list/users-list.component';
+import { UsersListComponent } from './users-page/users-list.component';
 
 const routes: Routes = [
     { path: 'system', component: SystemComponent, children: [
