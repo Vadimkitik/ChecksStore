@@ -17,6 +17,10 @@ import { ProductCreateComponent } from './product-page/product-form/product-crea
 import { ProductEditComponent } from './product-page/product-form/product-edit/product-edit.component';
 import { ProductListComponent } from './product-page/product-list/product-list.component';
 import { MaterialModule } from '../material/material.module';
+import { UsersListComponent } from './users-page/users-list/users-list.component';
+import { UsersFormComponent } from './users-page/users-form/users-form.component';
+import { UsersCreateComponent } from './users-page/users-form/users-create/users-create.component';
+import { UsersEditComponent } from './users-page/users-form/users-edit/users-edit.component';
 
 @NgModule({
     declarations: [
@@ -33,6 +37,10 @@ import { MaterialModule } from '../material/material.module';
         ProductCreateComponent,
         ProductListComponent,
         ProductEditComponent,
+        UsersListComponent,
+        UsersFormComponent,
+        UsersCreateComponent,
+        UsersEditComponent,
     ],
     imports: [ 
         CommonModule, 
