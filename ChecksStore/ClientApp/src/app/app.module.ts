@@ -2,7 +2,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { MaterialModule } from './material/material.module';
 import { JwtModule } from '@auth0/angular-jwt';
 
 
@@ -22,7 +21,6 @@ export function tokenGetter(){
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
-        MaterialModule,
         SharedModule,
         HttpClientModule,
         AppRoutingModule,

@@ -17,6 +17,8 @@ import { ProductEditComponent } from './product-page/product-form/product-edit/p
 import { ProductListComponent } from './product-page/product-list/product-list.component';
 import { MaterialModule } from '../material/material.module';
 import { UsersListComponent } from './users-page/users-list.component';
+import { BillCardComponent } from './bill-page/bill-card/bill-card.component';
+import { CurrencyCardComponent } from './bill-page/currency-card/currency-card.component';
 
 @NgModule({
     declarations: [
@@ -32,7 +34,9 @@ import { UsersListComponent } from './users-page/users-list.component';
         ProductCreateComponent,
         ProductListComponent,
         ProductEditComponent,
-        UsersListComponent
+        UsersListComponent,
+        BillCardComponent,
+        CurrencyCardComponent
     ],
     imports: [ 
         CommonModule, 
