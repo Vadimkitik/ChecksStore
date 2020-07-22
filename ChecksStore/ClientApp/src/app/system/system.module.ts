@@ -19,6 +19,7 @@ import { MaterialModule } from '../material/material.module';
 import { UsersListComponent } from './users-page/users-list.component';
 import { BillCardComponent } from './bill-page/bill-card/bill-card.component';
 import { CurrencyCardComponent } from './bill-page/currency-card/currency-card.component';
+import { TestPageComponent } from './test-page/test-page.component';
 
 @NgModule({
     declarations: [
@@ -36,7 +37,8 @@ import { CurrencyCardComponent } from './bill-page/currency-card/currency-card.c
         ProductEditComponent,
         UsersListComponent,
         BillCardComponent,
-        CurrencyCardComponent
+        CurrencyCardComponent,
+        TestPageComponent
     ],
     imports: [ 
         CommonModule, 
